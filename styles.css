@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(18, 22, 24);
+    font-family: 'Lucida Console';
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+
+header{
+    background-color:rgb(34, 46, 50);
+}
+
+.headerimg{
+    max-width:540px;
+}
+
+section{
+    margin:auto;
+}
+
+footer{
+    vertical-align:bottom;
+}
+
+div.bg {
+    margin:auto;
+    max-width:50em;
+    background-color: rgb(34, 46, 50);
+}

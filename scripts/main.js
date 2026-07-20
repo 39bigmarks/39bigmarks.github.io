@@ -151,9 +151,9 @@ function getTimeAndDate(time) {
             hour += 8 + 12;
 
             if (hour > 24)
-                hour = (hour - 24 - 8+12) - 4;
+                hour -= 24;
 
-            return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM");
+            return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM") + " EST";
         }
     );
 }
@@ -162,7 +162,7 @@ function getTimeAndDate(time) {
 
 function daysUntilBirthday(day, month) {
     var myBirthday, today, bday, diff, days;
-    myBirthday = [day, month]; // 6th of February
+    myBirthday = [day, month];
     today = new Date();
     bday = new Date(today.getFullYear(), myBirthday[1] - 1, myBirthday[0]);
     if (today.getTime() > bday.getTime()) {

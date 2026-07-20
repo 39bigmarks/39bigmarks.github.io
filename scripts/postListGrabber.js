@@ -51,7 +51,7 @@ function insertPosts(json) {
         postContainer.appendChild(postTitle);
         postContainer.appendChild(postShortArticle);
 
-        document.getElementById("posts").insertAdjacentElement("afterbegin", postContainer);
+        document.getElementById("posts").insertAdjacentElement("beforeend", postContainer);
     }
 }
 

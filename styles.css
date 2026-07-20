@@ -1,17 +1,57 @@
+* {
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration:none;
+}
+
+br {
+    user-select: none;
+}
+
 body {
     background-color: rgb(18, 22, 24);
-    font-family: 'Lucida Console';
+    font-family: JetBrainsMonoThin;
     text-align: center;
     color: white;
-    margin: auto;
+    margin: 0;
 }
 
-header{
-    background-color:rgb(34, 46, 50);
+header {
+    background-color: rgb(34, 46, 50);
+    padding:10px;
 }
 
+.title {
+    font-size: 48px;
+    color: antiquewhite;
+    text-decoration: none;
+    transition: all, ease-out, 0.1s;
+}
+
+.title:hover {
+    font-size: 50px;
+}
+
+hr {
+    height: 4px;
+    border-width: 0;
+    background-color: rgb(47, 66, 78);
+}
+
+section {
+    padding: 0;
+    margin: 0;
+    line-height: 0.5;
+}
+
+h1 {
+    margin: 0;
+}
 .headerimg{
-    max-width:540px;
+    max-width:840px;
+    padding:13px;
 }
 
 section{
@@ -26,4 +66,19 @@ div.bg {
     margin:auto;
     max-width:50em;
     background-color: rgb(34, 46, 50);
+}
+
+@font-face {
+    font-family: 'JetBrainsMonoLight';
+    src: url('fonts/JetBrainsMonoNL-Light.ttf');
+}
+
+@font-face {
+    font-family: 'JetBrainsMonoExtraLight';
+    src: url('fonts/JetBrainsMonoNL-ExtraLight.ttf');
+}
+
+@font-face {
+    font-family: 'JetBrainsMonoThin';
+    src: url('fonts/JetBrainsMono-Thin.ttf');
 }

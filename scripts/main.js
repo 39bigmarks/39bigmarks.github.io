@@ -81,11 +81,11 @@ function getPostData(json) {
 
     var article = document.createElement("p");
     article.textContent = getFormattedArticle(json.posts[index].article);
-    var formattedArticle = getFormattedArticle(json.posts[index].article);
+    // var formattedArticle = getFormattedArticle(json.posts[index].article);
 
-    for (let i = 0; i < getFormattedArticle.length; i++) {
+    // for (let i = 0; i < getFormattedArticle.length; i++) {
 
-    }
+    // }
 
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
@@ -115,6 +115,8 @@ function getTime(time) {
         function ($0, $1, $2, $3, $4, $5, $6, $7) {
             let hour = parseInt($4);
             hour += 8 + 12;
+            if (hour > 24)
+                hour = (hour - 24 - 8+12) - 4;
 
             return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? "PM" : "AM");
         }

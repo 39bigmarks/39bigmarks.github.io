@@ -1,8 +1,6 @@
 var page = 0;
 var lastPage = false;
 
-const randomFacts = ["I made this website overnight.", "This is my first time using JavaScript.", "Markiplier was referenced in older test commits.", "The website was originally called 39bigmarks, and had 39 big marks on the top bar."];
-
 function get(func) {
     $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
         switch (func) {
@@ -30,10 +28,6 @@ function insertPosts(json) {
     }
 
     let count = 0;
-
-    let randomFact = document.createElement("p");
-    randomFact.textContent = randomFacts[Math.random(randomFacts.length)];
-    document.getElementById("firstText").append(randomFact);
 
     for (let i = (json.posts.length - 1) - (10 * page); i >= 0 && count < 10; i--) {
         count++;

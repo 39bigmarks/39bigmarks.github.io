@@ -3,19 +3,42 @@
 <html>
 <head>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" type="text/javascript"></script>
+    <script src="scripts/main.js"></script>
 </head>
 <body>
     <header>
         <br />
         <a href="index.html"><h1 class="title">39bigmarks</h1></a>
-        <img class="headerimg" src="images/39 big marks.png" />
+        <br />
     </header>
     <hr />
     <br />
-    <section>
-        <h1>that post doesn't exist yet, dummy.</h1>
+    <section id="errorSection">
+        <script id="errorMessageGenerator">
+            function produceErrorMessage() {
+                if (document.getElementById("error") != null)
+                    return;
+
+                const errorSection = document.getElementById("errorSection");
+                var errorMessage = document.createElement("h1");
+                errorMessage.id = "error";
+
+                if (!getParameters().has("type") || getParameters().get("type") == "") {
+                    errorMessage.textContent = "i don't know how you got here.";
+                }
+                else {
+                    errorMessage.textContent = getParameters().get("type");
+                }
+
+                errorSection.insertAdjacentElement("beforeend", errorMessage);
+                document.removeChild(document.getElementById("errorMessageGenerator"));
+            }
+
+            produceErrorMessage();
+        </script>
     </section>
 </body>
 </html>

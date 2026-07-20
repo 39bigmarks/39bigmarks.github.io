@@ -1,8 +1,10 @@
 var page = 0;
 var lastPage = false;
 
+const randomFacts = ["I made this website overnight.", "This is my first time using JavaScript.", "Markiplier was referenced in older test commits.", "The website was originally called 39bigmarks, and had 39 big marks on the top bar."];
+
 function get(func) {
-    var j = $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
+    $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
         switch (func) {
             case "insertPosts":
                 insertPosts(json);
@@ -22,12 +24,16 @@ function insertPosts(json) {
 
     page = getParameters().get("page");
 
-    if (!validInteger(page)) {
-        location.href = "error.html?type=that's not an integer, also stop messing with that.";
+    if (!validInteger(page) || json.posts.length < (page * 10) - (json.posts.length % 10)) {
+        location.href = "error.html?type=there's nothing here yet, also stop messing with that.";
         return;
     }
 
     let count = 0;
+
+    let randomFact = document.createElement("p");
+    randomFact.textContent = randomFacts[Math.random(randomFacts.length)];
+    document.getElementById("firstText").append(randomFact);
 
     for (let i = (json.posts.length - 1) - (10 * page); i >= 0 && count < 10; i--) {
         count++;
@@ -45,6 +51,7 @@ function insertPosts(json) {
         postName.textContent = json.posts[i].title;
         postName.href = `post.html?index=${json.posts[i].index}`;
         postName.className = "postName";
+        postName.title = "Posted " + getTimeAndDate(json.posts[i].date);
 
         postTitle.appendChild(postName);
 
@@ -65,10 +72,39 @@ function insertPosts(json) {
 
     document.getElementById("pageNoTop").innerHTML = (parseInt(page) + 1).toString();
     document.getElementById("pageNoBottom").innerHTML = (parseInt(page) + 1).toString();
+
     document.getElementById("previousPageTop").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
     document.getElementById("previousPageBottom").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
+
     document.getElementById("nextPageTop").setAttributeNode(document.createAttribute((lastPage ? "disabled" : "enabled")));
     document.getElementById("nextPageBottom").setAttributeNode(document.createAttribute((lastPage ? "disabled" : "enabled")));
+}
+
+function getPostData(json) {
+    let index = getParameters().get("index");
+
+    if (!validInteger(index)) {
+        location.href = "error.html";
+        return;
+    }
+
+    document.title = `39bigmarks - ${json.posts[index].title}`;
+
+    document.getElementById("postTitle").innerHTML = json.posts[index].title;
+    document.getElementById("postCreationDate").innerHTML = `Post date: ${getTimeAndDate(json.posts[index].date)}`;
+
+    if (json.posts[index].edited != "") {
+        document.getElementById("postEditedDate").innerHTML = `Edited: ${getTimeAndDate(json.posts[index].edited)}`;
+    } else if (json.posts[index].edited == "") {
+        document.getElementById("postEditedDate").parentElement.removeChild(document.getElementById("postEditedDate"));
+    }
+
+    var article = document.createElement("div");
+    article.class = "postArticle";
+    article.innerHTML = json.posts[index].article;
+
+    document.getElementById("articleContainer").appendChild(article);
+    document.getElementById("articleContainer").appendChild(document.createElement("br"));
 }
 
 function jumpToPage(next) {
@@ -88,37 +124,30 @@ function jumpToPage(next) {
     }
 }
 
-function getPostData(json) {
-    let index = getParameters().get("index");
+function goToSection(section) {
+    switch (section) {
+        case 0:
+            location.href = "index.html";
+            break;
+        case 1:
+            location.href = "error.html?type=This doesn't go anywhere yet.";
+            break;
+        case 2:
+            location.href = "error.html?type=This doesn't go anywhere yet.";
+            break;
+        case 3:
+            location.href = "about.html";
+            break;
+        default:
+            location.href = "error.html";
 
-    if (!validInteger(index) || index > json.posts.length - 1) {
-        location.href = "error.html";
-        return;
     }
-
-    document.title = `39bigmarks - ${json.posts[index].title}`;
-
-    document.getElementById("postTitle").innerHTML = json.posts[index].title;
-    document.getElementById("postCreationDate").innerHTML = `Upload date: ${getTime(json.posts[index].date)}`;
-
-    if (json.posts[index].edited != "") {
-        document.getElementById("postEditedDate").innerHTML = `Edited: ${getTime(json.posts[index].edited)}`;
-    } else if (json.posts[index].edited == "") {
-        document.getElementById("postEditedDate").parentElement.removeChild(document.getElementById("postEditedDate"));
-    }
-
-    var article = document.createElement("div");
-    article.class = "postArticle";
-    article.innerHTML = json.posts[index].article;
-
-    document.getElementById("articleContainer").appendChild(document.createElement("br"));
-    document.getElementById("articleContainer").appendChild(article);
-    document.getElementById("articleContainer").appendChild(document.createElement("br"));
 }
 
-function getTime(time) {
+// Source - https://stackoverflow.com/a/4829642
+// with some alterations
 
-    // Source - https://stackoverflow.com/a/4829642
+function getTimeAndDate(time) {
     MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     return time.replace(
@@ -130,9 +159,37 @@ function getTime(time) {
             if (hour > 24)
                 hour = (hour - 24 - 8+12) - 4;
 
-            return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? "PM" : "AM");
+            return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM");
         }
     );
+}
+
+// Source - https://stackoverflow.com/a/21090308
+
+function daysUntilBirthday(day, month) {
+    var myBirthday, today, bday, diff, days;
+    myBirthday = [day, month]; // 6th of February
+    today = new Date();
+    bday = new Date(today.getFullYear(), myBirthday[1] - 1, myBirthday[0]);
+    if (today.getTime() > bday.getTime()) {
+        bday.setFullYear(bday.getFullYear() + 1);
+    }
+    diff = bday.getTime() - today.getTime();
+    days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return days;
+}
+
+// Source - https://stackoverflow.com/a/21090308
+
+function getAge(dateString) {
+    var today = new Date();
+    var birthDate = new Date(dateString);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
 }
 
 function getParameters() {
@@ -142,5 +199,5 @@ function getParameters() {
 function validInteger(theNumber) {
     var number = +theNumber;
 
-    return number > -1 && number % 1 === 0;
+    return number >= 0 && number % 1 === 0;
 }

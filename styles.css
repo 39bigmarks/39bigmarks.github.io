@@ -24,6 +24,10 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    margin: 0;
+}
+
 h3 {
     margin: 5px;
 }
@@ -53,6 +57,7 @@ hr {
     height: 4px;
     border-width: 0;
     background-color: rgb(47, 66, 78);
+    
 }
 
 header {
@@ -163,6 +168,11 @@ section {
 .postName:hover {
     color: rgb(53, 210, 255);
     font-size: 22px;
+    -moz-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(30deg, 0deg);
+    -webkit-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(30deg, 0deg);
+    -o-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(30deg, 0deg);
+    -ms-transform: scale(1) rotate(0deg) translate(0px, 0px) skew(30deg, 0deg);
+    transform: scale(1) rotate(0deg) translate(0px, 0px) skew(30deg, 0deg);
 }
 
     .postName:hover + .fading-text {
@@ -174,12 +184,15 @@ section {
     }
 .articleContainer {
     margin: 0;
+    padding:10px;
     width: 70%;
     background-color: rgb(18, 22, 24, 0.3);
     border: double 5px color-mix(in srgb, antiquewhite 45%, transparent);
     border-radius: 15px;
     align-self:center;
     flex-grow: 1;
+    text-align:left;
+    
 }
 
 @font-face {

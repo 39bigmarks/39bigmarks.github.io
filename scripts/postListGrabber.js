@@ -17,7 +17,14 @@ function insertPosts(json) {
     if (!getParameters().has("page"))
         location.href = "?page=0";
 
-    for (let i = 0; i < json.posts.length && i < 10 * (getParameters().get("page") + 1); i++) {
+    let page = getParameters().get("page");
+
+    if (!validInteger(page)) {
+        location.href = "error.html";
+        return;
+    }
+
+    for (let i = 10 * page; i < json.posts.length && i < 10 * (page + 1); i++) {
         var postContainer = document.createElement("div");
         postContainer.className = "postContainer";
 

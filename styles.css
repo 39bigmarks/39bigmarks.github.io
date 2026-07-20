@@ -28,8 +28,20 @@ h3 {
     margin: 5px;
 }
 
+html, body {
+    height: 99%;
+
+    display: flex;
+    flex-direction: column;
+}
+body > * {
+  flex-shrink: 0;
+}
+
 body {
-    background-color: rgb(18, 22, 25);
+    /*    background-color: rgb(18, 22, 25);*/
+    background-image: linear-gradient(rgb(37, 44, 55), rgb(18, 22, 25));
+    background-attachment: fixed;
     font-family: JetBrainsMonoThin;
     text-align: center;
     color: white;
@@ -44,47 +56,94 @@ hr {
 }
 
 header {
-    background-color: rgb(34, 46, 50);
+    /*    background-color: rgb(34, 46, 50);*/
+    z-index:3;
+    background-image: linear-gradient(rgb(44, 61, 70), rgb(34, 46, 50));
     padding: 10px;
-    margin:0;
+    margin: 0;
     filter: drop-shadow(0px 5px 5px rgb(18, 22, 24));
+    position:sticky;
+    top:0;
 }
 
 .title {
     font-size: 48px;
+    font-family: 'Times New Roman';
+    font-weight: 100;
     color: antiquewhite;
     text-decoration: none;
-    transition: all, ease-out, 0.1s;
-    filter: drop-shadow(0px 5px 5px rgb(18, 22, 24));
     line-height: 48px;
+    background-image: radial-gradient(rgba(0,0,0,0), rgba(0,0,0,0));
+    filter: drop-shadow(0px 5px 5px rgb(18, 22, 24));
+    transition: all, ease-out, 0.1s;
 }
 
-.title:hover {
-    font-size: 50px;
+    .title:hover {
+        font-size: 50px;
+        font-weight: 900;
+        font-family: JetBrainsMonoLight;
+    }
+
+button {
+    color: antiquewhite;
+    background-color: transparent;
+    border: double 3px antiquewhite;
+    font-family: JetBrainsMonoThin;
+    line-height: 15px;
+    border-radius: 15px;
+    width:90px;
+    height:30px;
+    transition: ease-out 0.1s;
+    cursor:pointer;
 }
+
+    button:hover {
+        transform: scale(1.3);
+/*        border-radius: 20px;*/
+        filter:drop-shadow(0px 5px 5px black);
+    }
+
+    button:disabled {
+        color: color-mix(in srgb, antiquewhite 25%, transparent);
+    }
 
 section {
     padding: 0;
     margin: 0;
 }
 
+/* blog post list styling */
+
 .postList {
-/*    border: 1px solid blue;*/
-    background-color: rgb(34, 46, 50);
+    /*    border: 1px solid blue;*/
+    /*    background-color: rgb(34, 46, 50);*/
     margin: 0;
-    width: 50%;
+    width: 75%;
     align-self: center;
     justify-self: center;
     text-align: left;
+    border-radius: 15px;
+    border: groove 2px rgb(159, 171, 190, 0.55);
+    background-image: radial-gradient(farthest-corner at 0% 0%, rgb(44, 61, 70), rgb(34, 46, 50) 45%);
 }
 
 .postContainer{
-    padding:20px;
+    padding:25px;
 }
+
 .postTitle {
+    color:rgb(172, 178, 199);
     font-size: 20px;
     font-family: JetBrainsMonoLight;
     text-decoration: none;
+    font-weight: 900;
+    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.36));
+}
+.inPostTitle {
+    color: antiquewhite;
+    font-size: 40px;
+    font-family: JetBrainsMonoLight;
+    text-decoration: underline;
     font-weight: 900;
     filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.36));
 }
@@ -92,23 +151,35 @@ section {
     line-height: 20px;
     transition: ease-out 0.1s;
 }
-
-.postName:hover{
-    color:rgb(53, 210, 255);
-    font-size:22px;
+.fading-text {
+    font-family: JetBrainsMonoLight;
+    font-weight: 500;
+    color: transparent;
+    background: linear-gradient(to right, color-mix(in srgb, antiquewhite 25%, transparent), rgba(0, 0, 0, 0) 35%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    transition: ease-in-out 1s;
+}
+.postName:hover {
+    color: rgb(53, 210, 255);
+    font-size: 22px;
 }
 
-.headerimg {
-    max-width: 840px;
-    padding: 13px;
-    filter: drop-shadow(5px 5px 5px rgb(18, 22, 24));
-    margin:0;
-}
-
-div.bg {
-    margin:auto;
-    max-width:50em;
-    background-color: rgb(34, 46, 50);
+    .postName:hover + .fading-text {
+        color: transparent;
+        background: linear-gradient(to right, antiquewhite, rgba(0, 0, 0, 0) 55%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        transition: ease-in-out 1s;
+    }
+.articleContainer {
+    margin: 0;
+    width: 70%;
+    background-color: rgb(18, 22, 24, 0.3);
+    border: double 5px color-mix(in srgb, antiquewhite 45%, transparent);
+    border-radius: 15px;
+    align-self:center;
+    flex-grow: 1;
 }
 
 @font-face {
@@ -124,4 +195,19 @@ div.bg {
 @font-face {
     font-family: 'JetBrainsMonoThin';
     src: url('fonts/JetBrainsMonoNL-Thin.ttf');
+}
+
+@media (max-width: 850px) {
+    .postList, .articleContainer {
+        width: 97%;
+    }
+    .postContainer{
+        padding:15px;
+    }
+    .button {
+        border-radius: 15px;
+        width: 60px;
+        height: 70px;
+    }
+
 }

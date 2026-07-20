@@ -18,6 +18,13 @@
                 <br />
                 <a href="index.html"><h1 class="title">big mark</h1></a>
                 <br />
+                <div id="navbar">
+                    <button id="btn_blog">Blog</button>
+                    <button id="btn_projects">Projects</button>
+                    <button id="btn_contact">Contact</button>
+                    <button id="btn_about">About</button>
+                </div>
+                <br />
             </header>
             <hr />
             <br>
@@ -25,13 +32,26 @@
                 <p>
                     good to see you, welcome to my site!<br />
                     this is my personal little area to share with you what i'm doing at the moment.<br />
-                    enjoy :)
+                    happy reading!
                 </p>
             </section>
             <br />
             <br />
+            <span>
+                <button id="previousPageTop" onclick="jumpToPage(false)">Previous</button>
+                <a id="pageNoTop"></a>
+                <button id="nextPageTop" onclick="jumpToPage(true)">Next</button>
+            </span>
+            <br />
+            <br />
             <article id="postList" class="postList">
             </article>
+            <br />
+            <span>
+                <button id="previousPageBottom" onclick="jumpToPage(false)">Previous</button>
+                <a id="pageNoBottom"></a>
+                <button id="nextPageBottom" onclick="jumpToPage(true)">Next</button>
+            </span>
             <br />
             <br />
         </div>

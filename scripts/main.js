@@ -1,3 +1,6 @@
+var page = 0;
+var lastPage = false;
+
 function get(func) {
     var j = $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
         switch (func) {
@@ -17,7 +20,7 @@ function insertPosts(json) {
     if (!getParameters().has("page"))
         location.href = "?page=0";
 
-    let page = getParameters().get("page");
+    page = getParameters().get("page");
 
     if (!validInteger(page)) {
         location.href = "error.html?type=that's not an integer, also stop messing with that.";
@@ -27,15 +30,16 @@ function insertPosts(json) {
     let count = 0;
 
     for (let i = (json.posts.length - 1) - (10 * page); i >= 0 && count < 10; i--) {
-        console.log(i);
         count++;
+
+        lastPage = i == 0;
 
         let postContainer = document.createElement("div");
         postContainer.className = "postContainer";
 
         let postTitle = document.createElement("div");
         postTitle.className = "postTitle";
-        postTitle.textContent = json.posts[i].index + ":  ";
+        postTitle.textContent = json.posts[i].index + 1 + ":  ";
 
         let postName = document.createElement("a");
         postName.textContent = json.posts[i].title;
@@ -45,18 +49,42 @@ function insertPosts(json) {
         postTitle.appendChild(postName);
 
         let postShortArticle = document.createElement("p");
-        postShortArticle.className = "postShortArticle";
+        postShortArticle.className = "fading-text";
         
-        postShortArticle.textContent = json.posts[i].article;
+        postShortArticle.textContent = json.posts[i].article.replace("<br>", " ");
         postShortArticle.textContent = postShortArticle.textContent.substring(0, postShortArticle.textContent.length > 32 ? 32 : postShortArticle.textContent.length);
 
         if (postShortArticle.textContent.length == 32)
             postShortArticle.textContent += "...";
 
+        postTitle.appendChild(postShortArticle);
         postContainer.appendChild(postTitle);
-        postContainer.appendChild(postShortArticle);
 
         document.getElementById("postList").appendChild(postContainer);
+    }
+
+    document.getElementById("pageNoTop").innerHTML = (parseInt(page) + 1).toString();
+    document.getElementById("pageNoBottom").innerHTML = (parseInt(page) + 1).toString();
+    document.getElementById("previousPageTop").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
+    document.getElementById("previousPageBottom").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
+    document.getElementById("nextPageTop").setAttributeNode(document.createAttribute((lastPage ? "disabled" : "enabled")));
+    document.getElementById("nextPageBottom").setAttributeNode(document.createAttribute((lastPage ? "disabled" : "enabled")));
+}
+
+function jumpToPage(next) {
+    switch (next) {
+        case true:
+            if (lastPage) return;
+            page++;
+            location.href = `index.html?page=${page}`;
+            break;
+        case false:
+            if (page == 0) return;
+            page--;
+            location.href = `index.html?page=${page}`;
+            break;
+        default:
+            throw new DOMException("Type must be a bool.");
     }
 }
 
@@ -71,7 +99,7 @@ function getPostData(json) {
     document.title = `39bigmarks - ${json.posts[index].title}`;
 
     document.getElementById("postTitle").innerHTML = json.posts[index].title;
-    document.getElementById("postCreationDate").innerHTML = `Creation Date: ${getTime(json.posts[index].date)}`;
+    document.getElementById("postCreationDate").innerHTML = `Upload date: ${getTime(json.posts[index].date)}`;
 
     if (json.posts[index].edited != "") {
         document.getElementById("postEditedDate").innerHTML = `Edited: ${getTime(json.posts[index].edited)}`;
@@ -79,12 +107,13 @@ function getPostData(json) {
         document.getElementById("postEditedDate").parentElement.removeChild(document.getElementById("postEditedDate"));
     }
 
-    var article = document.createElement("p");
+    var article = document.createElement("div");
+    article.class = "postArticle";
     article.innerHTML = json.posts[index].article;
 
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
-    document.getElementById("articleContainer").appendChild(document.createElement("br"));
     document.getElementById("articleContainer").appendChild(article);
+    document.getElementById("articleContainer").appendChild(document.createElement("br"));
 }
 
 function getTime(time) {

@@ -87,15 +87,6 @@ function getPostData(json) {
     document.getElementById("articleContainer").appendChild(article);
 }
 
-function getFormattedArticleElement(article) {
-    let splits = article.split(new RegExp("%\(.*\)", "gm"), "");
-    if (splits.length <= 1) return article;
-
-
-
-    return article;
-}
-
 function getTime(time) {
 
     // Source - https://stackoverflow.com/a/4829642

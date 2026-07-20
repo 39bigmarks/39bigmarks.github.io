@@ -115,6 +115,7 @@ function getTime(time) {
         function ($0, $1, $2, $3, $4, $5, $6, $7) {
             let hour = parseInt($4);
             hour += 8 + 12;
+
             if (hour > 24)
                 hour = (hour - 24 - 8+12) - 4;
 

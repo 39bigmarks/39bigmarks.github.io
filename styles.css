@@ -5,9 +5,17 @@
 a{
     text-decoration:none;
 }
+a:visited {
+    text-decoration: none;
+}
 
 br {
     user-select: none;
+}
+
+p {
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -18,9 +26,17 @@ body {
     margin: 0;
 }
 
+hr {
+    z-index:3;
+    height: 4px;
+    border-width: 0;
+    background-color: rgb(47, 66, 78);
+}
+
 header {
     background-color: rgb(34, 46, 50);
-    padding:10px;
+    padding: 10px;
+    filter: drop-shadow(0px 5px 5px rgb(18, 22, 24));
 }
 
 .title {
@@ -34,32 +50,40 @@ header {
     font-size: 50px;
 }
 
-hr {
-    height: 4px;
-    border-width: 0;
-    background-color: rgb(47, 66, 78);
-}
-
 section {
     padding: 0;
     margin: 0;
-    line-height: 0.5;
+}
+
+.postList {
+    border: 1px solid blue;
+    margin: 0;
+    max-width: 800px;
+    align-self: center;
+    justify-self: center;
+    text-align: left;
+}
+.postContainer {
+}
+.postTitle{
+    font-size:20px;
+    font-family:JetBrainsMonoLight;
+    text-decoration:none;
+    font-weight:900;
 }
 
 h1 {
     margin: 0;
 }
-.headerimg{
-    max-width:840px;
-    padding:13px;
+h3 {
+    margin: 5px;
+    
 }
-
-section{
-    margin:auto;
-}
-
-footer{
-    vertical-align:bottom;
+.headerimg {
+    max-width: 840px;
+    padding: 13px;
+    filter: drop-shadow(5px 5px 5px rgb(18, 22, 24));
+    margin:0;
 }
 
 div.bg {
@@ -80,5 +104,5 @@ div.bg {
 
 @font-face {
     font-family: 'JetBrainsMonoThin';
-    src: url('fonts/JetBrainsMono-Thin.ttf');
+    src: url('fonts/JetBrainsMonoNL-Thin.ttf');
 }

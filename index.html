@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-4.0.0.min.js" type="text/javascript"></script>
     <script src="scripts/postListGrabber.js"></script>
+    <script>
+        get("insertPosts");
+    </script>
 </head>
     <body>
         <div class="container">
@@ -17,12 +20,15 @@
             <hr />
             <br>
             <section>
-                <p>good to see you, welcome to the site.</p>
-                <p>this is my personal little area to share what i'm doing in the moment.</p>
-                <p>enjoy :)</p>
+                <p>
+                    good to see you, welcome to the site.<br />
+                    this is my personal little area to share what i'm doing in the moment.<br />
+                    enjoy :)
+                </p>
             </section>
-            <article id="posts">
-                
+            <br />
+            <br />
+            <article id="posts" class="postList">
             </article>
         </div>
     </body>

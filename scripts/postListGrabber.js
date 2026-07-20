@@ -15,7 +15,7 @@ function get(func) {
 
 function insertPosts(json) {
     if (!getParameters().has("page"))
-        href = "?page=0";
+        location.href = "?page=0";
 
     for (let i = 0; i < json.posts.length && i < 10 * (getParameters().get("page") + 1); i++) {
         var postContainer = document.createElement("div");

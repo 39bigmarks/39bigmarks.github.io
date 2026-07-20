@@ -80,29 +80,20 @@ function getPostData(json) {
     }
 
     var article = document.createElement("p");
-    article.textContent = getFormattedArticle(json.posts[index].article);
-    // var formattedArticle = getFormattedArticle(json.posts[index].article);
-
-    // for (let i = 0; i < getFormattedArticle.length; i++) {
-
-    // }
+    article.innerHTML = json.posts[index].article;
 
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
     document.getElementById("articleContainer").appendChild(article);
-
-    // add regex for the ability to add images:
-    // %(\w{3})\[(.+)\]%
-    // %img[images/painting.png]%
 }
 
-function getFormattedArticle(article) {
+function getFormattedArticleElement(article) {
     let splits = article.split(new RegExp("%\(.*\)", "gm"), "");
     if (splits.length <= 1) return article;
 
 
 
-    return 
+    return article;
 }
 
 function getTime(time) {

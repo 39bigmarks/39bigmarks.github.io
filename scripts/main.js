@@ -3,9 +3,6 @@ var page = 0;
 var lastPage = false;
 
 function removeHtml() {
-    if (location.href == "") {
-        location.href = `index.html?page=0`;
-    }
     if (location.href.includes(".html")) {
         location.href = location.href.replace(".html", "");
     }
@@ -26,10 +23,13 @@ function get(func) {
     });
 }
 function insertPosts(json) {
-    if (!getParameters().has("page"))
-        location.href = "?page=0";
+    let link = location.href.split("/")[location.href.split("/").length - 1];
+
+    if (link == "" || link == "index.html" || link == "index") {
+        location.href = `index.html?page=0`;
+    }
     page = parseInt(getParameters().get("page"));
-    if (!validInteger(page) || json.posts.length < (page * 10) - (json.posts.length % 10)) {
+    if (json.posts.length < (page * 10) - (json.posts.length % 10)) {
         location.href = "error.html?type=there's nothing here yet, also stop messing with that.";
         return;
     }
@@ -44,7 +44,7 @@ function insertPosts(json) {
         postTitle.textContent = json.posts[i].index + 1 + ":  ";
         let postName = document.createElement("a");
         postName.textContent = json.posts[i].title;
-        postName.href = `post.html?index=${json.posts[i].index}`;
+        postName.href = `post.html?entry=${json.posts[i].index}`;
         postName.className = "postName";
         postName.title = "Posted " + getTimeAndDate(json.posts[i].date);
         postTitle.appendChild(postName);
@@ -66,24 +66,24 @@ function insertPosts(json) {
     document.getElementById("nextPageBottom").setAttributeNode(document.createAttribute((lastPage ? "disabled" : "enabled")));
 }
 function getPostData(json) {
-    let index = getParameters().get("index");
-    if (!validInteger(parseInt(index))) {
+    let entry = getParameters().get("entry");
+    if (!validInteger(parseInt(entry))) {
         location.href = "error.html";
         return;
     }
 
-    document.title = `39bigmarks - ${json.posts[index].title}`;
-    document.getElementById("postTitle").innerHTML = json.posts[index].title;
-    document.getElementById("postCreationDate").innerHTML = `Post date: ${getTimeAndDate(json.posts[index].date)}`;
-    if (json.posts[index].edited != "") {
-        document.getElementById("postEditedDate").innerHTML = `Edited: ${getTimeAndDate(json.posts[index].edited)}`;
+    document.title = `39bigmarks - ${json.posts[entry].title}`;
+    document.getElementById("postTitle").innerHTML = json.posts[entry].title;
+    document.getElementById("postCreationDate").innerHTML = `Post date: ${getTimeAndDate(json.posts[entry].date)}`;
+    if (json.posts[entry].edited != "") {
+        document.getElementById("postEditedDate").innerHTML = `Edited: ${getTimeAndDate(json.posts[entry].edited)}`;
     }
-    else if (json.posts[index].edited == "") {
+    else if (json.posts[entry].edited == "") {
         document.getElementById("postEditedDate").parentElement.removeChild(document.getElementById("postEditedDate"));
     }
     var article = document.createElement("div");
     article.className = "postArticle";
-    article.innerHTML = json.posts[index].article;
+    article.innerHTML = json.posts[entry].article;
     document.getElementById("articleContainer").appendChild(article);
     document.getElementById("articleContainer").appendChild(document.createElement("br"));
 }

@@ -201,20 +201,33 @@ section {
     align-items:center;
 }
 
-table {
+.contactTable {
+    place-self: center;
+    align-content: center;
+    border-spacing: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
     border: 1px solid;
+}
+
+.contactInput {
+    width: 400px;
+}
+.contactMessage {
+    max-width: 800px;
+    max-height: 400px;
+    width: 400px;
+    height: 300px;
 }
 
 @font-face {
     font-family: 'JetBrainsMonoLight';
     src: url('fonts/JetBrainsMonoNL-Light.ttf');
 }
-
 @font-face {
     font-family: 'JetBrainsMonoExtraLight';
     src: url('fonts/JetBrainsMonoNL-ExtraLight.ttf');
 }
-
 @font-face {
     font-family: 'JetBrainsMonoThin';
     src: url('fonts/JetBrainsMonoNL-Thin.ttf');
@@ -224,13 +237,31 @@ table {
     .postList, .articleContainer {
         width: 97%;
     }
-    .postContainer{
-        padding:15px;
+    .postContainer {
+        width:80%;
+        padding: 15px;
+        padding-left: 5px;
+        padding-right: 5px;
     }
     .button {
         border-radius: 15px;
         width: 60px;
         height: 70px;
+    }
+
+    .contactTable{
+        border-spacing:15px;
+    }
+
+    .contactInput{
+        max-width:150px;
+    }
+
+    .contactMessage {
+        max-width: 150px;
+        max-height: 400px;
+        width: 150px;
+        height: 300px;
     }
 
 }

@@ -1,4 +1,4 @@
-import * as $ from 'jquery';
+// import * as $ from 'jquery';
 var page = 0;
 var lastPage = false;
 function removeHtml() {

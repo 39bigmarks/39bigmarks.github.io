@@ -1,6 +1,12 @@
 var page = 0;
 var lastPage = false;
 
+function removeHtml() {
+    if (location.href.includes("html")) {
+        location.href = location.href.replace(".html", "");
+    }
+}
+
 function get(func) {
     $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
         switch (func) {
@@ -20,7 +26,7 @@ function insertPosts(json) {
     if (!getParameters().has("page"))
         location.href = "?page=0";
 
-    page = getParameters().get("page");
+    page = parseInt(getParameters().get("page"));
 
     if (!validInteger(page) || json.posts.length < (page * 10) - (json.posts.length % 10)) {
         location.href = "error.html?type=there's nothing here yet, also stop messing with that.";
@@ -64,8 +70,8 @@ function insertPosts(json) {
         document.getElementById("postList").appendChild(postContainer);
     }
 
-    document.getElementById("pageNoTop").innerHTML = (parseInt(page) + 1).toString();
-    document.getElementById("pageNoBottom").innerHTML = (parseInt(page) + 1).toString();
+    document.getElementById("pageNoTop").innerHTML = "Page " + (page + 1).toString();
+    document.getElementById("pageNoBottom").innerHTML = "Page " + (page + 1).toString();
 
     document.getElementById("previousPageTop").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
     document.getElementById("previousPageBottom").setAttributeNode(document.createAttribute((page == 0 ? "disabled" : "enabled")));
@@ -94,7 +100,7 @@ function getPostData(json) {
     }
 
     var article = document.createElement("div");
-    article.class = "postArticle";
+    article.className = "postArticle";
     article.innerHTML = json.posts[index].article;
 
     document.getElementById("articleContainer").appendChild(article);
@@ -121,13 +127,13 @@ function jumpToPage(next) {
 function goToSection(section) {
     switch (section) {
         case 0:
-            location.href = "index.html";
+            location.href = "index.html?page=0";
             break;
         case 1:
             location.href = "error.html?type=This doesn't go anywhere yet.";
             break;
         case 2:
-            location.href = "error.html?type=This doesn't go anywhere yet.";
+            location.href = "contact.html";
             break;
         case 3:
             location.href = "about.html";
@@ -138,11 +144,18 @@ function goToSection(section) {
     }
 }
 
+function submitMessage() {
+    document.getElementById("contactName").textContent = "";
+    document.getElementById("contactEmail").textContent = "";
+    document.getElementById("contactTitle").textContent = "";
+    document.getElementById("contactMessage").textContent = "";
+}
+
 // Source - https://stackoverflow.com/a/4829642
 // with some alterations
 
 function getTimeAndDate(time) {
-    MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+    let MM = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
     return time.replace(
         /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\w{3}|\.\d{3}\w)/,

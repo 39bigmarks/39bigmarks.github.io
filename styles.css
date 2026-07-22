@@ -194,7 +194,15 @@ section {
     align-self:center;
     flex-grow: 1;
     text-align:left;
-    
+}
+
+#contact-form{
+    align-content:center;
+    align-items:center;
+}
+
+table {
+    border: 1px solid;
 }
 
 @font-face {

@@ -1,11 +1,16 @@
 // import * as $ from 'jquery';
 var page = 0;
 var lastPage = false;
+
 function removeHtml() {
-    if (location.href.includes("html")) {
+    if (location.href == "") {
+        location.href = `index.html?page=0`;
+    }
+    if (location.href.includes(".html")) {
         location.href = location.href.replace(".html", "");
     }
 }
+
 function get(func) {
     $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {
         switch (func) {
@@ -66,6 +71,7 @@ function getPostData(json) {
         location.href = "error.html";
         return;
     }
+
     document.title = `39bigmarks - ${json.posts[index].title}`;
     document.getElementById("postTitle").innerHTML = json.posts[index].title;
     document.getElementById("postCreationDate").innerHTML = `Post date: ${getTimeAndDate(json.posts[index].date)}`;

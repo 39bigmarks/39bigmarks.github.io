@@ -29,28 +29,16 @@
     <hr />
     <br />
     <article id="articleContainer" class="articleContainer">
-        <h2>hello there, i'm big mark.</h2>
+        <h2 align="middle">Hello there, I'm big mark.</h2>
         <br />
-        <p>i have done all of (and continue to do) the following things:</p>
-        <ul>
-            <li>3D model and paint custom textures (<a href="projects.html?category=art" style="text-decoration:underline; color:skyblue;">view</a>)</li>
-            <li>draw pixel art (<a href="projects.html?category=art" style="text-decoration:underline; color:skyblue;">view</a>)</li>
-            <li>program games (<a href="projects.html?category=games" style="text-decoration:underline; color:skyblue;">view</a>)</li>
-            <li>program software in C# (<a href="projects.html?category=software" style="text-decoration:underline; color:skyblue;">view</a>)</li>
-            <li>record music in Logic Pro (<a href="projects.html?category=music" style="text-decoration:underline; color:skyblue;">listen</a>)</li>
-            <li>play piano, guitar, dulcimer, ukulele, bass, drums, and other percussion.</li>
-            <li>create digital paintings (been considering getting into oil painting) (<a href="projects.html?category=art" style="text-decoration:underline; color:skyblue;">view</a>)</li>
-            <li>direct voice actors & actresses</li>
-            <li>write scripts and storylines</li>
-            <li>and just recently, make my first ever website in JavaScript. (the one you're looking at)</li>
-        </ul>
-        <p>i'm currently <span id="age"></span> years old, <span id="checkIfBirthday"></span> why don't you <a href="contact.html" style="text-decoration:underline; color:skyblue;">shoot me a message</a>, and maybe we can work together on something very soon?</p>
+		<h3 align="middle">3D Generalist | Digital Painter | Game & Software Developer | Story Writer | Multi-instrumentalist | Musician</h3>
+        <p align="middle">I'm currently <span id="age"></span> years old, <span id="checkIfBirthday"></span></p>
         <script>
             let age = getAge("2008/08/12");
             let checkIfBirthday = daysUntilBirthday(8, 12) == 364 || daysUntilBirthday(8, 12) == 365;
 
             document.getElementById("age").textContent = getAge("2008/08/12");
-            document.getElementById("checkIfBirthday").innerHTML = checkIfBirthday ? "and it's actually my birthday today today! well anyway, if you're down," : "but i will be turning <span id=\"ageToCome\"></span> soon, in like <span id=\"daysRemaining\"></span> days or something. until then,";
+            document.getElementById("checkIfBirthday").innerHTML = checkIfBirthday ? "and it's actually my birthday today today!" : "but I will be turning <span id=\"ageToCome\"></span> soon, in exactly <span id=\"daysRemaining\"></span> days.";
 
             if (!checkIfBirthday) {
                 document.getElementById("ageToCome").textContent = getAge("2008/08/12") + 1;

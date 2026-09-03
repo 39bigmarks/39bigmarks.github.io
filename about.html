@@ -34,7 +34,7 @@
 		<h3 align="middle">3D Generalist | Digital Painter | Game & Software Developer | Story Writer | Multi-instrumentalist | Musician</h3>
         <p align="middle">I'm currently <span id="age"></span> years old, <span id="checkIfBirthday"></span></p>
         <script>
-            let age = getAge("2008/08/12");
+            let age = getAge("2008/08/12") - 1;
             let checkIfBirthday = daysUntilBirthday(8, 12) == 364 || daysUntilBirthday(8, 12) == 365;
 
             document.getElementById("age").textContent = getAge("2008/08/12");

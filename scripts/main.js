@@ -138,7 +138,7 @@ function getTimeAndDate(time) {
         hour += 8 + 12;
         if (hour > 24)
             hour -= 24;
-        return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM") + " EST";
+        return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM") + " EDT";
     });
 }
 // Source - https://stackoverflow.com/a/21090308

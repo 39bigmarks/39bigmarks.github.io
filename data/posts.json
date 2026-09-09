@@ -6,6 +6,13 @@
       "edited": "",
       "title": "hello world",
       "article": "hello. it's me.<br>nothing much else to say.<br>goodbye now"
+    },
+    {
+      "index": 2,
+      "date": "2026-09-09T19:45:22.599Z",
+      "edited": "",
+      "title": "made a tool in 3 hours",
+      "article": "hello reader!<br>today i made a new tool to kinda skip writing json. i still have to write everything i want to say, but now i don't have to deal with manually getting the UTC time lol.<br>i've provided some screenshots below.<br><img src=\"images/screenshots/post2/blogposteditor1.png\"><br><img src=\"images/screenshots/post2/blogposteditor2.png\"><br><img src=\"images/screenshots/post2/blogposteditor3.png\"><br>not sure how long i'll want to use this, but it's a nice tool to have at the moment.<br>and i'll have to figure out a way to automatically commit these to github... a problem for me in the future.<br><br><b>thanks for reading!</b>"
     }
   ]
 }

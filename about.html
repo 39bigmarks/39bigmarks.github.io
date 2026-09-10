@@ -41,7 +41,7 @@
             document.getElementById("checkIfBirthday").innerHTML = checkIfBirthday ? "and it's actually my birthday today today!" : "but I will be turning <span id=\"ageToCome\"></span> soon, in exactly <span id=\"daysRemaining\"></span> days.";
 
             if (!checkIfBirthday) {
-                document.getElementById("ageToCome").textContent = getAge("2008/08/12") + 1;
+                document.getElementById("ageToCome").textContent = getAge("2008/08/12");
                 document.getElementById("daysRemaining").textContent = daysUntilBirthday(8, 12);
             }
         </script>

@@ -35,13 +35,9 @@
         <p align="middle">I'm currently <span id="age"></span> years old, <span id="checkIfBirthday"></span></p>
         <script>
             let age = getAge("2008/08/12") - 1;
-            let checkIfBirthday = daysUntilBirthday(8, 12) == 364 || daysUntilBirthday(8, 12) == 365;
+            let checkIfBirthday = daysUntilBirthday(8, 12) + 1 == 364 || daysUntilBirthday(8, 12) + 1 == 365;
 
-			console.log(age);
-			console.log(getAge("2008/08/12"));
-			console.log(daysUntilBirthday(8, 12));
-
-            document.getElementById("age").textContent = getAge("2008/08/12");
+            document.getElementById("age").textContent = age;
             document.getElementById("checkIfBirthday").innerHTML = checkIfBirthday ? "and it's actually my birthday today today!" : "but I will be turning <span id=\"ageToCome\"></span> soon, in exactly <span id=\"daysRemaining\"></span> days.";
 
             if (!checkIfBirthday) {

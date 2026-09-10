@@ -50,7 +50,14 @@ function insertPosts(json) {
         postTitle.appendChild(postName);
         let postShortArticle = document.createElement("p");
         postShortArticle.className = "fading-text";
-        postShortArticle.textContent = json.posts[i].article.replace("<br>", " ");
+        postShortArticle.textContent = json.posts[i].article
+            .replace("<br>", " ")
+            .replace("<h3>", "")
+            .replace("</h3>", "")
+            .replace("<h2>", "")
+            .replace("</h2>", "")
+            .replace("<h1>", "")
+            .replace("</h1>", "");
         postShortArticle.textContent = postShortArticle.textContent.substring(0, postShortArticle.textContent.length > 32 ? 32 : postShortArticle.textContent.length);
         if (postShortArticle.textContent.length == 32)
             postShortArticle.textContent += "...";

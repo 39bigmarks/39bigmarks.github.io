@@ -143,7 +143,7 @@ function getTimeAndDate(time) {
     return time.replace(/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(\w{3}|\.\d{3}\w)/, function ($0, $1, $2, $3, $4, $5, $6, $7) {
         let hour = parseInt($4);
         hour += 4;
-        if(hour > 24) hour -= 24;
+        if(hour >= 24) hour -= 24;
         return MM[$2 - 1] + " " + $3 + ", " + $1 + " at " + hour % 12 + ":" + $5 + ":" + $6 + (+hour > 12 ? " PM" : " AM") + " EDT";
     });
 }

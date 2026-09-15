@@ -2,11 +2,11 @@
 var page = 0;
 var lastPage = false;
 
-// function removeHtml() {
-//     if (location.href.includes(".html")) {
-//         location.href = location.href.replace(".html", "");
-//     }
-// }
+function removeHtml() {
+    if (location.href.includes(".html")) {
+        location.href = location.href.replace(".html", "");
+    }
+}
 
 function get(func) {
     $.getJSON("https://39bigmarks.github.io/data/posts.json", function (json) {

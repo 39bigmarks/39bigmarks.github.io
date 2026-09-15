@@ -19,6 +19,7 @@
         <br />
         <br />
         <div id="navbar">
+            <!--                style="--hover-bg: url(images/big-mark.jpg);"-->
             <button id="btn_blog" onclick="goToSection(0);">Blog</button>
             <button id="btn_projects" onclick="goToSection(1);">Projects</button>
             <button id="btn_contact" onclick="goToSection(2);">Contact</button>
@@ -31,7 +32,7 @@
     <article id="articleContainer" class="articleContainer">
         <h2 align="middle">Hello there, I'm big mark.</h2>
         <br />
-		<h3 align="middle">3D Generalist | Digital Painter | Game & Software Developer | Story Writer | Multi-instrumentalist | Musician</h3>
+        <h3 align="middle">3D Generalist | Digital Painter | Game & Software Developer | Story Writer | Multi-instrumentalist | Musician</h3>
         <p align="middle">I'm currently <span id="age"></span> years old, <span id="checkIfBirthday"></span></p>
         <script>
             let age = getAge("2008/08/12") - 1;
@@ -41,10 +42,48 @@
             document.getElementById("checkIfBirthday").innerHTML = checkIfBirthday ? "and it's actually my birthday today today!" : "but I will be turning <span id=\"ageToCome\"></span> soon, in exactly <span id=\"daysRemaining\"></span> day(s).";
 
             if (!checkIfBirthday) {
-                document.getElementById("ageToCome").textContent = getAge("2008/08/12");
-                document.getElementById("daysRemaining").textContent = daysUntilBirthday(8, 12) + 1;
+            document.getElementById("ageToCome").textContent = getAge("2008/08/12");
+            document.getElementById("daysRemaining").textContent = daysUntilBirthday(8, 12) + 1;
             }
         </script>
+        <br />
+        <br />
+        <h3 align="middle">Useful links</h3>
+        <br />
+        <style>
+            .usefulLinkContainer {
+                justify-items: center;
+            }
+
+            .aligned {
+                display: flex;
+                transition: all, ease-out, 0.1s;
+                align-items: center;
+            }
+
+                .aligned:hover {
+                    font-weight: 900;
+                    color: turquoise;
+                    transform: scale(1.1);
+                    transition: all, ease-out, 0.1s;
+                }
+
+            .usefulLink {
+                padding: 20px;
+            }
+        </style>
+        <div class="usefulLinkContainer">
+            <a class="aligned" href="https://github.com/39bigmarks" target="_blank">
+                <img src="svgs/GitHub_Invertocat_White.svg"
+                     width="50" alt="GitHub">
+                <span class="usefulLink">GitHub</span>
+            </a>
+            <a class="aligned" href="https://www.youtube.com/@joshsarms" target="_blank">
+                <img src="svgs/youtube-app-white-icon.svg"
+                     width="50" alt="YouTube">
+                <span class="usefulLink">YouTube</span>
+            </a>
+        </div>
     </article>
 </body>
 </html>

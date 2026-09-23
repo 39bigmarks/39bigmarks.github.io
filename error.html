@@ -40,7 +40,7 @@
                 errorMessage.id = "error";
 
                 if (!getParameters().has("type") || getParameters().get("type") == "") {
-                    errorMessage.textContent = "i don't know how you got here.";
+                    errorMessage.textContent = "Couldn't go to this link because no.";
                 }
                 else {
                     errorMessage.textContent = getParameters().get("type");

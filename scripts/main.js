@@ -79,7 +79,7 @@ function getPostData(json) {
         return;
     }
 
-    document.title = `big mark - entry ${json.posts[entry].index}: ${json.posts[entry].title}`;
+    document.title = `big mark - entry ${json.posts[entry].index + 1}: ${json.posts[entry].title}`;
     document.getElementById("postTitle").innerHTML = json.posts[entry].title;
     document.getElementById("postCreationDate").innerHTML = `Post date: ${getTimeAndDate(json.posts[entry].date)}`;
     if (json.posts[entry].edited != "") {
